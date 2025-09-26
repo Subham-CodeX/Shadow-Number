@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Fames & Dots Game</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #89f7fe, #66a6ff);
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+        }
+        h1 {
+            margin-top: 30px;
+            color: #222;
+            text-shadow: 1px 1px 2px #aaa;
+        }
+        form {
+            margin: 20px;
+        }
+        input[type="text"] {
+            padding: 10px;
+            width: 160px;
+            font-size: 18px;
+            border-radius: 8px;
+            border: 2px solid #444;
+            text-align: center;
+            transition: 0.3s;
+        }
+        input[type="text"]:focus {
+            outline: none;
+            border-color: #0077ff;
+            box-shadow: 0 0 8px #0077ff;
+        }
+        button {
+            padding: 10px 20px;
+            margin-left: 10px;
+            font-size: 16px;
+            background: #444;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        button:hover {
+            background: #222;
+            transform: scale(1.05);
+        }
+        table {
+            margin-top: 20px;
+            border-collapse: collapse;
+            width: 80%;
+            max-width: 500px;
+            background: white;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+            border-radius: 10px;
+            overflow: hidden;
+            animation: fadeIn 0.5s ease;
+        }
+        th, td {
+            padding: 12px;
+            text-align: center;
+            border-bottom: 1px solid #ddd;
+        }
+        th {
+            background: #333;
+            color: white;
+        }
+        tr:hover {
+            background: #f2f2f2;
+        }
+
+        /* Fame, Dot, Wrong styles */
+        .fame {
+            color: green;
+            font-weight: bold;
+            text-shadow: 0 0 5px lime, 0 0 10px limegreen;
+            animation: glowFame 1s infinite alternate;
+        }
+        .dot {
+            color: orange;
+            font-weight: bold;
+            text-shadow: 0 0 5px gold, 0 0 10px darkorange;
+            animation: glowDot 1s infinite alternate;
+        }
+        .wrong {
+            color: #bbb;
+        }
+
+        /* Animations */
+        @keyframes glowFame {
+            from { text-shadow: 0 0 5px lime; }
+            to   { text-shadow: 0 0 15px limegreen; }
+        }
+        @keyframes glowDot {
+            from { text-shadow: 0 0 5px orange; }
+            to   { text-shadow: 0 0 15px gold; }
+        }
+        @keyframes shake {
+            0% { transform: translateX(0); }
+            25% { transform: translateX(-4px); }
+            50% { transform: translateX(4px); }
+            75% { transform: translateX(-4px); }
+            100% { transform: translateX(0); }
+        }
+        .shake {
+            animation: shake 0.4s;
+        }
+
+        /* Fade-in effect for table */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to   { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body>
+    <h1>🔥 Fames & Dots Number Guessing</h1>
+    <form method="POST">
+        <input type="text" name="guess" maxlength="4" placeholder="Enter 4-digit guess" required>
+        <button type="submit">Submit</button>
+    </form>
+
+    <h2>Attempts History</h2>
+    <table>
+        <tr>
+            <th>Attempt</th>
+            <th>Your Guess</th>
+            <th>Feedback</th>
+        </tr>
+        {% for attempt in attempts %}
+        <tr class="{% if attempt.fames|length == 0 and attempt.dots|length == 0 %}shake{% endif %}">
+            <td>{{ loop.index }}</td>
+            <td>
+                {% for digit in attempt.guess %}
+                    {% if (digit, loop.index0) in attempt.fames %}
+                        <span class="fame">{{ digit }}</span>
+                    {% elif digit in attempt.dots|map(attribute=0) %}
+                        <span class="dot">{{ digit }}</span>
+                    {% else %}
+                        <span class="wrong">{{ digit }}</span>
+                    {% endif %}
+                {% endfor %}
+            </td>
+            <td>
+                {% for d, pos in attempt.fames %}
+                    <span class="fame">{{ d }}</span> Fame 
+                {% endfor %}
+                {% for d, pos in attempt.dots %}
+                    <span class="dot">{{ d }}</span> Dot 
+                {% endfor %}
+                {% if attempt.fames|length == 0 and attempt.dots|length == 0 %}
+                    <span class="wrong">❌ No Match</span>
+                {% endif %}
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>

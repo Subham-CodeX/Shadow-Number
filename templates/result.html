@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Game Over - Fames & Dots</title>
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #a1ffce, #faffd1);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+        }
+        .card {
+            text-align: center;
+            background: white;
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+            animation: popIn 0.8s ease;
+            position: relative;
+            max-width: 600px;
+        }
+        h1 {
+            font-size: 2.5em;
+            color: #28a745;
+            text-shadow: 0 0 10px limegreen;
+        }
+        p {
+            font-size: 1.3em;
+            margin: 15px 0;
+        }
+        .highlight {
+            font-weight: bold;
+            color: #ff5722;
+        }
+        a {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 15px 25px;
+            background: linear-gradient(135deg, #ff6a00, #ee0979);
+            color: white;
+            font-size: 18px;
+            border-radius: 12px;
+            text-decoration: none;
+            transition: 0.3s;
+        }
+        a:hover {
+            transform: scale(1.1);
+            background: linear-gradient(135deg, #ee0979, #ff6a00);
+        }
+        table {
+            margin-top: 20px;
+            width: 100%;
+            border-collapse: collapse;
+            background: #f8f8f8;
+            border-radius: 12px;
+            overflow: hidden;
+        }
+        th, td {
+            padding: 12px;
+            text-align: center;
+        }
+        th {
+            background: #333;
+            color: white;
+        }
+        tr:nth-child(even) {
+            background: #eee;
+        }
+        @keyframes popIn {
+            from { transform: scale(0.8); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
+        }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <h1>🎉 Congratulations! 🎉</h1>
+        <p>You cracked the code <span class="highlight">{{ secret }}</span> in <b>{{ attempt_count }}</b> attempts.</p>
+        <p>🏆 Your Best Score: <b>{{ best_score }}</b> attempts</p>
+
+        <h2>🏅 Leaderboard</h2>
+        <table>
+            <tr><th>Rank</th><th>Player</th><th>Score</th></tr>
+            {% for entry in leaderboard %}
+            <tr>
+                <td>{{ loop.index }}</td>
+                <td>{{ entry.name }}</td>
+                <td>{{ entry.score }}</td>
+            </tr>
+            {% endfor %}
+        </table>
+
+        <a href="{{ url_for('index') }}">🔄 Play Again</a>
+    </div>
+</body>
+</html>
