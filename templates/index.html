@@ -3,79 +3,35 @@
 <head>
     <title>Fames & Dots Game</title>
     <style>
-        body {
-            font-family: 'Poppins', sans-serif;
-            background: linear-gradient(135deg, #ff9a9e, #fad0c4);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            margin: 0;
-        }
-        .container {
-            text-align: center;
-            background: white;
-            padding: 40px;
-            border-radius: 20px;
-            box-shadow: 0 8px 20px rgba(0,0,0,0.3);
-            animation: fadeIn 1s ease;
-            max-width: 500px;
-        }
-        h1 {
-            color: #333;
-            font-size: 2.5em;
-        }
-        input, select {
-            padding: 12px;
-            border-radius: 10px;
-            border: 2px solid #aaa;
-            margin-top: 15px;
-            font-size: 16px;
-            width: 220px;
-            text-align: center;
-        }
-        button {
-            margin-top: 20px;
-            padding: 15px 30px;
-            font-size: 18px;
-            border: none;
-            border-radius: 12px;
-            background: linear-gradient(135deg, #667eea, #764ba2);
-            color: white;
-            cursor: pointer;
-            transition: 0.3s;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
-        }
-        button:hover {
-            transform: scale(1.1);
-            background: linear-gradient(135deg, #764ba2, #667eea);
-        }
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to   { opacity: 1; transform: translateY(0); }
-        }
+        body { font-family:'Poppins', sans-serif; background: linear-gradient(135deg,#ff9a9e,#fad0c4); display:flex; justify-content:center; align-items:center; height:100vh; margin:0; }
+        .container { text-align:center; background:white; padding:40px; border-radius:20px; box-shadow:0 8px 20px rgba(0,0,0,0.3); animation:fadeIn 1s ease; max-width:500px; }
+        h1 { color:#333; font-size:2.5em; }
+        input, select { padding:12px; border-radius:10px; border:2px solid #aaa; margin-top:15px; font-size:16px; width:220px; text-align:center; }
+        button { margin-top:20px; padding:15px 30px; font-size:18px; border:none; border-radius:12px; background:linear-gradient(135deg,#667eea,#764ba2); color:white; cursor:pointer; transition:0.3s; box-shadow:0 4px 10px rgba(0,0,0,0.2); }
+        button:hover { transform: scale(1.1); background:linear-gradient(135deg,#764ba2,#667eea); }
+        @keyframes fadeIn { from { opacity:0; transform:translateY(20px); } to { opacity:1; transform:translateY(0); } }
     </style>
 </head>
 <body>
-    <div class="container">
-        <h1>🎯 Fames & Dots!</h1>
-        <p>Enter your nickname and choose an avatar:</p>
-        <form method="POST">
-            <input type="text" name="player_name" placeholder="Your Nickname" required><br>
-            <select name="avatar" required>
-                <option value="🐱">🐱 Cat</option>
-                <option value="🐶">🐶 Dog</option>
-                <option value="🐵">🐵 Monkey</option>
-                <option value="🐯">🐯 Tiger</option>
-                <option value="🐰">🐰 Bunny</option>
-                <option value="🦊">🦊 Fox</option>
-                <option value="🐼">🐼 Panda</option>
-                <option value="🦁">🦁 Lion</option>
-                <option value="🐸">🐸 Frog</option>
-                <option value="🐧">🐧 Penguin</option>
-            </select><br>
-            <button type="submit">🚀 Start Game</button>
-        </form>
-    </div>
+<div class="container">
+    <h1>🎯 Fames & Dots!</h1>
+    <p>Enter your nickname and choose an avatar:</p>
+    <form method="POST">
+        <input type="text" name="player_name" placeholder="Your Nickname" required><br>
+        <select name="avatar" required>
+            <option value="🐱">🐱 Cat</option>
+            <option value="🐶">🐶 Dog</option>
+            <option value="🐵">🐵 Monkey</option>
+            <option value="🐯">🐯 Tiger</option>
+            <option value="🐰">🐰 Bunny</option>
+            <option value="🦊">🦊 Fox</option>
+            <option value="🐼">🐼 Panda</option>
+            <option value="🦁">🦁 Lion</option>
+            <option value="🐸">🐸 Frog</option>
+            <option value="🐧">🐧 Penguin</option>
+        </select><br>
+        <button type="submit">🚀 Start Game</button>
+    </form>
+</div>
 </body>
 </html>
